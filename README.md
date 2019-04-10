@@ -1,3 +1,7 @@
+# 中华人民共和国行政区划数据
+这个项目是 Fork 了 [modood](https://github.com/modood) 的 [Administrative-divisions-of-China](https://github.com/modood/Administrative-divisions-of-China) 项目，由于不擅长 NodeJS 以及觉得 [Administrative-divisions-of-China](https://github.com/modood/Administrative-divisions-of-China) 在数据及使用便利性上有一点点问题，所以重复造了个轮子，新轮子在 [中华人民共和国行政区划数据](https://github.com/snakejordan/administrative-divisions-of-China-on-Python)，在此对 [modood](https://github.com/modood) 表示特别鸣谢。
+
+本项目对原项目增加了配置文件中配置爬取年份的功能，其它内容未做修改，如有需要可移步新轮子 [中华人民共和国行政区划数据](https://github.com/snakejordan/administrative-divisions-of-China-on-Python)。
 # Administrative-divisions-of-China
 
 [![code style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)

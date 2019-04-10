@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-sqlite3 ./dist/data.sqlite "SELECT code,name FROM province ORDER BY code;" | awk -F'|' '
+source ./lib/config.ini
+sqlite3 ${dataPath}data.sqlite "SELECT code,name FROM province ORDER BY code;" | awk -F'|' '
    { code[++i]=$1; name[i]=$2 }
    END {
       printf "[";
@@ -11,9 +12,9 @@ sqlite3 ./dist/data.sqlite "SELECT code,name FROM province ORDER BY code;" | awk
          printf closing;
       }
       printf "]";
-   }' | tr '|' '"' > ./dist/provinces.json
+   }' | tr '|' '"' > ${dataPath}provinces.json
 
-sqlite3 ./dist/data.sqlite "SELECT code,name,provinceCode FROM city ORDER BY code;" | awk -F'|' '
+sqlite3 ${dataPath}data.sqlite "SELECT code,name,provinceCode FROM city ORDER BY code;" | awk -F'|' '
    { code[++i]=$1; name[i]=$2; provinceCode[i]=$3 }
    END {
       printf "[";
@@ -24,9 +25,9 @@ sqlite3 ./dist/data.sqlite "SELECT code,name,provinceCode FROM city ORDER BY cod
          printf closing;
       }
       printf "]";
-   }' | tr '|' '"' > ./dist/cities.json
+   }' | tr '|' '"' > ${dataPath}cities.json
 
-sqlite3 ./dist/data.sqlite "SELECT code,name,cityCode,provinceCode FROM area ORDER BY code;" | awk -F'|' '
+sqlite3 ${dataPath}data.sqlite "SELECT code,name,cityCode,provinceCode FROM area ORDER BY code;" | awk -F'|' '
    { code[++i]=$1; name[i]=$2; cityCode[i]=$3; provinceCode[i]=$4 }
    END {
       printf "[";
@@ -37,9 +38,9 @@ sqlite3 ./dist/data.sqlite "SELECT code,name,cityCode,provinceCode FROM area ORD
          printf closing;
       }
       printf "]";
-   }' | tr '|' '"' > ./dist/areas.json
+   }' | tr '|' '"' > ${dataPath}areas.json
 
-sqlite3 ./dist/data.sqlite "SELECT code,name,areaCode,cityCode,provinceCode FROM street ORDER BY code;" | awk -F'|' '
+sqlite3 ${dataPath}data.sqlite "SELECT code,name,areaCode,cityCode,provinceCode FROM street ORDER BY code;" | awk -F'|' '
    { code[++i]=$1; name[i]=$2; areaCode[i]=$3; cityCode[i]=$4; provinceCode[i]=$5 }
    END {
       printf "[";
@@ -50,9 +51,9 @@ sqlite3 ./dist/data.sqlite "SELECT code,name,areaCode,cityCode,provinceCode FROM
          printf closing;
       }
       printf "]";
-   }' | tr '|' '"' > ./dist/streets.json
+   }' | tr '|' '"' > ${dataPath}streets.json
 
-sqlite3 ./dist/data.sqlite "SELECT code,name,streetCode,areaCode,cityCode,provinceCode FROM village ORDER BY code;" | awk -F'|' '
+sqlite3 ${dataPath}data.sqlite "SELECT code,name,streetCode,areaCode,cityCode,provinceCode FROM village ORDER BY code;" | awk -F'|' '
    { code[++i]=$1; name[i]=$2; streetCode[i]=$3; areaCode[i]=$4; cityCode[i]=$5; provinceCode[i]=$6 }
    END {
       printf "[";
@@ -63,4 +64,4 @@ sqlite3 ./dist/data.sqlite "SELECT code,name,streetCode,areaCode,cityCode,provin
          printf closing;
       }
       printf "]";
-   }' | tr '|' '"' > ./dist/villages.json
+   }' | tr '|' '"' > ${dataPath}villages.json
